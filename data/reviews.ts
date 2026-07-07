@@ -19,6 +19,7 @@ export const reviews: Review[] = [
     rating: 5,
     text: "Dudaklarım için sürekli kullanıyorum, kuruluk hissini hemen alıyor. Fiyatına göre çok başarılı.",
     source: "Manuel",
+    published: true,
   },
   {
     id: "rv-002",
@@ -27,6 +28,7 @@ export const reviews: Review[] = [
     rating: 5,
     text: "Tırnak etlerim çok kuruyordu, düzenli kullanınca fark ettim. Fırçası da çok pratik.",
     source: "Manuel",
+    published: true,
   },
   {
     id: "rv-003",
@@ -35,6 +37,7 @@ export const reviews: Review[] = [
     rating: 4,
     text: "Kokusu hafif ve rahatsız etmiyor, cildimi de tahriş etmedi. Tekrar alırım.",
     source: "Manuel",
+    published: true,
   },
   {
     id: "rv-004",
@@ -43,6 +46,7 @@ export const reviews: Review[] = [
     rating: 5,
     text: "Uyurken kullanıyorum, kulakta baskı yapmıyor. Kutusuyla gelmesi de hijyenik.",
     source: "Manuel",
+    published: true,
   },
   {
     id: "rv-005",
@@ -51,6 +55,7 @@ export const reviews: Review[] = [
     rating: 5,
     text: "Yazın deniz tatilinde çok işime yaradı, dudaklarım hiç kurumadı.",
     source: "Manuel",
+    published: true,
   },
   {
     id: "rv-006",
@@ -58,5 +63,6 @@ export const reviews: Review[] = [
     rating: 5,
     text: "Kargo hızlıydı, ürünler özenli paketlenmişti. Marka olarak güven verdi.",
     source: "Manuel",
+    published: true,
   },
 ];

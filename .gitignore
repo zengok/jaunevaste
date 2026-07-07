@@ -40,6 +40,12 @@ yarn-error.log*
 # admin login logs (bkz. lib/admin/log.ts — yerel dosya, gerçek log servisi değil)
 /logs
 
+# yerel SQLite veritabanı (bkz. prisma/schema.prisma) — prod'da Postgres'e geçilecek
+/prisma/dev.db
+/prisma/dev.db-journal
+/prisma/dev.db-wal
+/prisma/dev.db-shm
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

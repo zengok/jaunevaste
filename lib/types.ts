@@ -94,6 +94,8 @@ export interface Review {
   text: string;
   source: ReviewSource;
   date?: string;
+  /** Admin panelinden onaylanıp yayına alınmış mı (moderasyon). */
+  published: boolean;
 }
 
 export interface SalesPoint {

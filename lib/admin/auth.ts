@@ -1,4 +1,5 @@
 import { randomBytes, scryptSync, timingSafeEqual, createHmac } from "node:crypto";
+import { cookies } from "next/headers";
 import { PENDING_COOKIE, SESSION_COOKIE } from "@/lib/admin/constants";
 
 /**
@@ -126,4 +127,21 @@ export function checkAdminCredentials(email: string, password: string): boolean 
   // ancak şifre karşılaştırması her zaman verifyPassword üzerinden yapılır.
   if (email.trim().toLowerCase() !== adminEmail.trim().toLowerCase()) return false;
   return verifyPassword(password, adminHash);
+}
+
+/**
+ * Her mutasyon yapan Server Action'ın başında çağrılmalı.
+ *
+ * app/admin/(protected)/layout.tsx zaten sayfa render'ını oturum kontrolüne
+ * bağlıyor, ama Server Action'lar teorik olarak sayfayı render etmeden de
+ * doğrudan çağrılabilir. Bu yüzden yazma işlemi yapan her action, savunma
+ * derinliği için oturumu burada tekrar doğrular.
+ */
+export async function requireAdminSession(): Promise<SessionPayload> {
+  const store = await cookies();
+  const session = verifySessionToken(store.get(SESSION_COOKIE)?.value);
+  if (!session) {
+    throw new Error("Yetkisiz erişim: admin oturumu geçersiz.");
+  }
+  return session;
 }

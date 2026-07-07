@@ -13,14 +13,15 @@ import { breadcrumbSchema, faqSchema, productSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import {
   getProductBySlug,
+  getPublishedProducts,
   getRelatedProducts,
   getReviewsForProduct,
 } from "@/lib/cms";
-import { products } from "@/data/products";
 import { getCategory } from "@/data/categories";
 
-export function generateStaticParams() {
-  return products.filter((p) => p.published).map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const products = await getPublishedProducts();
+  return products.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({

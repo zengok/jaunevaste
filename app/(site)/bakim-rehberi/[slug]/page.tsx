@@ -6,10 +6,10 @@ import { ButtonLink } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
-import { getBlogPostBySlug } from "@/lib/cms";
-import { blogPosts } from "@/data/blog";
+import { getBlogPostBySlug, getBlogPosts } from "@/lib/cms";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const blogPosts = await getBlogPosts();
   return blogPosts.map((p) => ({ slug: p.slug }));
 }
 

@@ -78,7 +78,7 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 
 ---
 
-## Faz 4 — Admin Panel ⚙️ Başlandı (Auth + salt okunur yönetim ekranları tamam)
+## Faz 4 — Admin Panel ⚙️ İlerliyor (Auth + veritabanı + ürün/yorum CRUD tamam)
 
 - [x] Giriş / kimlik doğrulama: e-posta + şifre (scrypt hash, env tabanlı)
       + zorunlu 2FA/TOTP (RFC 6238, `lib/admin/totp.ts`, harici bağımlılık yok)
@@ -92,26 +92,50 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
       `app/admin/(protected)/layout.tsx` (Node, asıl imza/süre doğrulaması) —
       uçtan uca test edildi: yetkisiz erişim, hatalı şifre, hatalı TOTP,
       kurcalanmış (tampered) cookie, çıkış sonrası erişim — hepsi reddediliyor
+- [x] **Veritabanı entegrasyonu**: Prisma + SQLite (`prisma/schema.prisma`,
+      `lib/db.ts`). Payload CMS/Strapi yerine bilinçli olarak bu tercih
+      edildi — Payload/Strapi kendi admin arayüzü ve auth sistemini
+      dayatıyor, bu da az önce kurulan özel 2FA'lı admin paneliyle
+      çakışırdı; ayrıca Next.js 16 çok yeni olduğu için uyumluluk riski
+      taşıyordu. Prisma + SQLite mevcut admin panelini koruyarak gerçek
+      CRUD'u mümkün kıldı. **Prodüksiyonda PostgreSQL'e geçiş**: sadece
+      `prisma/schema.prisma`'da `provider = "postgresql"`, `@prisma/adapter-pg`
+      kurulumu ve `lib/db.ts` + `prisma.config.ts`'teki adapter değişikliği
+      gerekiyor — model/sorgu kodu değişmiyor.
+- [x] `data/products.ts`, `data/reviews.ts`, `data/blog.ts` içeriği
+      `prisma/seed.ts` ile veritabanına aktarıldı (idempotent, upsert)
 - [x] Dashboard: toplam/yayında/taslak ürün, çok satan, kategori, yorum,
       blog yazısı sayıları + son yorumlar + SEO uyarı özeti
-- [x] Ürün yönetimi ekranı (salt okunur tablo: durum, SKU, kategori, SEO uyarı sayısı)
-- [x] Kategori yönetimi ekranı (salt okunur tablo: ürün sayısı, aktif/yakında durumu)
-- [x] Müşteri yorumları yönetimi ekranı (salt okunur tablo)
+- [x] **Ürün yönetimi**: tam CRUD — oluştur, düzenle, sil, yayında/taslak
+      toggle (`app/admin/(protected)/urunler/`, zod ile form doğrulama,
+      silme işleminde tarayıcı onay diyaloğu). Playwright ile uçtan uca
+      test edildi: oluşturma → anında public sitede görünür, düzenleme →
+      değişiklik public sitede yansıyor, taslağa alma → public sayfa 404
+      veriyor, silme → onay istemeden gerçekleşmiyor.
+- [x] **Müşteri yorumları yönetimi**: yayınla/gizle toggle + silme (onaylı),
+      gizlenen yorum public sitede ve ürün detayında anında kayboluyor
+      (test edildi)
+- [x] Kategori yönetimi ekranı (salt okunur tablo: ürün sayısı, aktif/yakında
+      durumu) — kategoriler bilinçli olarak DB'ye taşınmadı, bkz. aşağıdaki not
 - [x] SEO yönetimi ekranı: her ürün için otomatik denetim (başlık/açıklama
       uzunluğu, eksik alt text, eksik barkod, eksik SSS, eksik doğrulanmış
       puan — `lib/admin/seoAudit.ts`)
+- [x] Admin içerik değişiklikleri denetim izi (`AdminAuditLog` tablosu,
+      `lib/admin/auditLog.ts`) — kayıt altına alınıyor ama henüz admin
+      arayüzünde görüntülenmiyor (küçük bir sonraki adım)
 - [x] `noindex` — tüm `/admin/*` sayfaları arama motorlarından gizli
+- [ ] **Kategori düzenleme** — kategoriler (6 sabit taksonomi öğesi) bilinçli
+      olarak veritabanına taşınmadı çünkü `ProductCard` gibi bazı bileşenler
+      bunları senkron/istemci tarafında okuyor; DB'ye taşımak o bileşenleri
+      async yapmayı gerektirir ki bu client component sınırlarını bozar.
+      Düşük öncelik: kategoriler nadiren değişir.
 - [ ] Rol bazlı yetkilendirme — şu an tek admin rolü var (payload'da `role`
-      alanı hazır ama çoklu kullanıcı/rol yönetimi CMS/DB'siz anlamsız)
-- [ ] Ürün/kategori/yorum **düzenleme** (CRUD) — bilerek yapılmadı: DB/CMS
-      olmadan "kaydet" butonu hiçbir yere yazmayacağı için yanıltıcı olurdu;
-      önce CMS entegrasyonu gerekiyor (aşağıya bakın)
-- [ ] Görsel/video yönetimi (WebP/AVIF dönüşümü dahil)
+      alanı hazır ama çoklu kullanıcı/rol yönetimi ileri bir adım)
+- [ ] Ürün formunda FAQ (SSS) düzenleme — mevcut FAQ'lar korunuyor ama
+      formdan eklenip çıkarılamıyor (dinamik liste UI'ı ayrı bir iş)
+- [ ] Görsel/video yönetimi (dosya yükleme, WebP/AVIF dönüşümü) — form şu an
+      yalnızca elle girilen bir görsel yolunu kabul ediyor, gerçek upload yok
 - [ ] Sayfa yönetimi (Hakkımızda, KVKK vb. içeriklerin admin'den düzenlenmesi)
-- [ ] CMS/veritabanı entegrasyonu (Payload CMS veya Strapi + PostgreSQL) —
-      şu an tüm içerik `data/*.ts` dosyalarında statik seed veri olarak
-      duruyor; `lib/cms.ts` bu geçişe hazır şekilde soyutlandı ama henüz
-      gerçek bir CMS'e bağlı değil — bir sonraki admin paneli adımı bu
 
 ---
 
@@ -152,8 +176,9 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [ ] Rol bazlı erişim — henüz tek admin rolü var, CMS/DB entegrasyonu sonrası
 - [ ] Dosya yükleme / MIME type doğrulama (admin panel görsel yükleme
       özelliğiyle birlikte gelecek)
-- [x] Admin giriş logları (yerel dosya, MVP) — [ ] admin işlem logları (ürün
-      düzenleme vb.) henüz yok çünkü düzenleme özelliği de yok
+- [x] Admin giriş logları (yerel dosya, MVP) + admin içerik işlem logları
+      (`AdminAuditLog` DB tablosu — ürün/yorum oluşturma, düzenleme, silme,
+      yayın durumu değişiklikleri kaydediliyor; henüz arayüzde gösterilmiyor)
 - [ ] Günlük otomatik yedek + haftalık dış yedek
 - [ ] Sentry / Logtail hata takibi entegrasyonu
 - [ ] Bağımlılık güncelleme (Dependabot vb.) otomasyonu
@@ -170,8 +195,10 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [ ] Form testleri (iletişim formu şu an `mailto:` ile çalışıyor;
       gerçek bir backend/API endpoint'e bağlanmadı)
 - [x] Admin panel auth testleri (Playwright ile uçtan uca doğrulandı: yetkisiz
-      erişim engelleme, hatalı şifre, hatalı TOTP, kurcalanmış cookie,
-      logout) — [ ] admin CRUD testleri henüz yok çünkü CRUD özelliği yok
+      erişim engelleme, hatalı şifre, hatalı TOTP, kurcalanmış cookie, logout)
+- [x] Admin panel CRUD testleri (Playwright ile uçtan uca doğrulandı: ürün
+      oluşturma/düzenleme/yayın durumu/silme, yorum yayınla/gizle — hepsi
+      public sitede doğru anda doğru şekilde yansıyor)
 - [ ] Canlı yayın (production deployment)
 
 ---
@@ -181,8 +208,11 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [ ] `lib/site.ts` içindeki telefon, WhatsApp numarası ve adres bilgileri
       hâlâ placeholder (`+90 000 000 00 00` vb.) — gerçek bilgilerle
       değiştirilmeli
-- [ ] `data/reviews.ts` içindeki yorumlar örnek/yer tutucu içerik —
-      gerçek, KVKK uyumlu (maskelenmiş) pazaryeri yorumlarıyla değiştirilmeli
+- [ ] Yorumlar şu an örnek/yer tutucu içerik (`data/reviews.ts` yalnızca ilk
+      seed kaynağı; gerçek veri artık veritabanında ve admin panelden
+      yönetiliyor) — gerçek, KVKK uyumlu (maskelenmiş) pazaryeri yorumlarıyla
+      değiştirilmeli (admin panelden tek tek silinip gerçekleriyle
+      değiştirilebilir)
 - [ ] `data/sales-points.ts` içinde Hepsiburada linki eksik (TODO olarak
       işaretli)
 - [ ] Gerçek ürün fotoğrafları/videoları (bkz. Faz 2 ve Faz 3)
@@ -200,6 +230,6 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 | Faz 1 — Temel Kurulum | ✅ Tamamlandı (deployment hariç) |
 | Faz 2 — Marka ve Ana Sayfa | ✅ Tamamlandı (gerçek görsel/video hariç) |
 | Faz 3 — Ürün Kataloğu | ⚙️ Büyük ölçüde tamamlandı (gerçek içerik hariç) |
-| Faz 4 — Admin Panel | ⚙️ Auth (2FA dahil) + salt okunur dashboard/ürün/kategori/yorum/SEO ekranları tamam; CRUD, CMS/DB entegrasyonu bekliyor |
+| Faz 4 — Admin Panel | ⚙️ Auth (2FA dahil) + Prisma/SQLite veritabanı + ürün ve yorum tam CRUD + dashboard/kategori/SEO ekranları tamam; görsel yükleme, rol yönetimi, sayfa yönetimi bekliyor |
 | Faz 5 — SEO ve Güvenlik | ⚙️ Temel SEO + header güvenliği + admin auth güvenliği tamam, WAF/backup/hata takibi eksik |
 | Faz 6 — Yayına Alma | ❌ Yapılmadı |

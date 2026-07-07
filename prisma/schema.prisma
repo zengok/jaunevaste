@@ -1,0 +1,87 @@
+// Jaune Vaste içerik veritabanı şeması.
+//
+// Şu an SQLite kullanıyor (harici servis gerektirmez, bu konteynerde
+// çalışır). Bağlantı artık burada değil, prisma.config.ts (CLI/migrate
+// için) ve lib/db.ts (uygulama için) içinde bir "driver adapter" ile
+// kuruluyor (Prisma 7 değişikliği). Prodüksiyonda PostgreSQL'e geçmek
+// için: provider'ı "postgresql" yapın, @prisma/adapter-pg kurun ve
+// lib/db.ts + prisma.config.ts içindeki adapter'ı değiştirin.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Product {
+  id               String   @id
+  slug             String   @unique
+  name             String
+  category         String
+  shortBenefit     String
+  description      String
+  usage            String
+  suitableFor      String
+  benefits         Json
+  ingredients      Json?
+  warnings         Json?
+  sku              String
+  barcode          String?
+  utsRegistered    Boolean  @default(false)
+  images           Json
+  video            String?
+  rating           Float?
+  reviewCount      Int?
+  bestSeller       Boolean  @default(false)
+  isNew            Boolean  @default(false)
+  marketplaceLinks Json
+  faqs             Json
+  seoTitle         String
+  seoDescription   String
+  price            Float?
+  currency         String   @default("TRY")
+  stock            Int?
+  ecommerceEnabled Boolean  @default(false)
+  published        Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  reviews Review[]
+}
+
+model Review {
+  id          String   @id
+  productSlug String?
+  product     Product? @relation(fields: [productSlug], references: [slug], onDelete: SetNull)
+  maskedName  String
+  rating      Int
+  text        String
+  source      String
+  date        String?
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model BlogPost {
+  slug           String @id
+  title          String
+  excerpt        String
+  category       String
+  date           String
+  readingMinutes Int
+  sections       Json
+  seoTitle       String
+  seoDescription String
+}
+
+model AdminAuditLog {
+  id        String   @id @default(cuid())
+  actor     String
+  action    String
+  entity    String
+  entityId  String
+  detail    String?
+  createdAt DateTime @default(now())
+}
