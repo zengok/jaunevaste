@@ -17,7 +17,7 @@ export default function KvkkPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           KVKK Aydınlatma Metni
         </h1>
-        <div className="prose-legal mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="prose-legal mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             {site.name} (&ldquo;Şirket&rdquo;) olarak, 6698 sayılı Kişisel
             Verilerin Korunması Kanunu (&ldquo;KVKK&rdquo;) uyarınca veri
@@ -56,12 +56,12 @@ export default function KvkkPage() {
             işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme,
             işlenme amacını öğrenme, düzeltilmesini veya silinmesini isteme
             haklarına sahipsiniz. Taleplerinizi{" "}
-            <a href={`mailto:${site.email}`} className="text-gold hover:underline">
+            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
               {site.email}
             </a>{" "}
             adresine iletebilirsiniz.
           </p>
-          <p className="text-xs text-ink/45">
+          <p className="text-xs text-muted">
             Bu metin genel bilgilendirme amaçlıdır; hukuki danışmanlık
             yerine geçmez. Yayına almadan önce hukuk danışmanı incelemesi
             önerilir.

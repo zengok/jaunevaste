@@ -31,7 +31,7 @@ const trustItems = [
 
 export function TrustBlocks() {
   return (
-    <section className="bg-cream py-16 sm:py-24">
+    <section className="bg-soft py-16 sm:py-24">
       <Container>
         <SectionHeading
           eyebrow="Neden Jaune Vaste?"
@@ -47,10 +47,10 @@ export function TrustBlocks() {
               <span className="text-3xl" aria-hidden="true">
                 {item.icon}
               </span>
-              <h3 className="mt-4 font-display text-base font-bold text-ink group-hover:text-gold">
+              <h3 className="mt-4 font-display text-base font-bold text-ink group-hover:text-primary">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/60">{item.text}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
             </Link>
           ))}
         </div>

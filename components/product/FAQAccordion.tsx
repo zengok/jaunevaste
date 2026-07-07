@@ -7,12 +7,12 @@ export function FAQAccordion({ faqs }: { faqs: ProductFAQ[] }) {
       {faqs.map((faq) => (
         <details
           key={faq.question}
-          className="group rounded-2xl border border-ink/8 bg-white px-5 py-4 shadow-soft"
+          className="group rounded-2xl border border-hairline bg-white px-5 py-4 shadow-soft"
         >
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-bold text-ink sm:text-base">
             {faq.question}
             <svg
-              className="h-5 w-5 shrink-0 text-gold transition-transform group-open:rotate-180"
+              className="h-5 w-5 shrink-0 text-primary-soft transition-transform group-open:rotate-180"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -22,7 +22,7 @@ export function FAQAccordion({ faqs }: { faqs: ProductFAQ[] }) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <p className="mt-3 text-sm leading-relaxed text-ink/65">{faq.answer}</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{faq.answer}</p>
         </details>
       ))}
     </div>

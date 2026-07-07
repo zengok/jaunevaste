@@ -17,7 +17,7 @@ export default function ShippingPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Teslimat Bilgileri
         </h1>
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             Jaune Vaste ürünleri şu anda resmi satış noktalarımız (
             {salesPoints.map((p) => p.name).join(", ")}) üzerinden satışa

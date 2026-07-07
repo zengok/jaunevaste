@@ -16,7 +16,7 @@ export default function UtsPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           ÜTS / Barkod Sorgulama Bilgilendirmesi
         </h1>
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             ÜTS (Ürün Takip Sistemi), Türkiye İlaç ve Tıbbi Cihaz Kurumu
             tarafından işletilen; kozmetik ürünler de dahil olmak üzere

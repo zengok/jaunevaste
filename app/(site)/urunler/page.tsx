@@ -27,12 +27,12 @@ export default async function ProductsPage() {
           { name: "Ürünlerimiz", path: "/urunler" },
         ])}
       />
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-soft py-12 sm:py-16">
         <Container>
           <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Ürünlerimiz
           </h1>
-          <p className="mt-3 max-w-2xl text-base text-ink/65">
+          <p className="mt-3 max-w-2xl text-base text-muted">
             Günlük bakım rutininizin her adımı için tasarlanmış Jaune Vaste
             ürünlerini keşfedin. Kategoriye göre filtreleyin veya arama yapın.
           </p>

@@ -5,26 +5,26 @@ import { site } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-cream">
+    <section className="relative overflow-hidden bg-soft">
       <div
-        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-jaune-300/40 blur-3xl"
+        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary-soft/20 blur-3xl"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-nude/50 blur-3xl"
+        className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-sage/25 blur-3xl"
         aria-hidden="true"
       />
       <Container className="relative grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:py-28">
         <div className="text-center lg:text-left">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-widest text-cocoa shadow-soft">
-            <span className="h-2 w-2 rounded-full bg-jaune-500" aria-hidden="true" />
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary-soft shadow-soft">
+            <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
             Türkiye&apos;nin bakım markası
           </p>
           <h1 className="font-display text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-6xl">
             Günlük bakım rutinine{" "}
-            <span className="text-gold">zarif ve güvenilir</span> bir dokunuş.
+            <span className="text-primary">zarif ve güvenilir</span> bir dokunuş.
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink/65 sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg lg:mx-0">
             {site.description}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">

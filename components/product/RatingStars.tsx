@@ -11,7 +11,7 @@ export function RatingStars({
         {[1, 2, 3, 4, 5].map((star) => (
           <svg
             key={star}
-            className={`h-4 w-4 ${star <= Math.round(rating) ? "text-jaune-500" : "text-ink/15"}`}
+            className={`h-4 w-4 ${star <= Math.round(rating) ? "text-gold" : "text-ink/15"}`}
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -21,7 +21,7 @@ export function RatingStars({
       </div>
       <span className="text-sm font-semibold text-ink">{rating.toFixed(1)}</span>
       {reviewCount != null && (
-        <span className="text-sm text-ink/50">({reviewCount} yorum)</span>
+        <span className="text-sm text-muted">({reviewCount} yorum)</span>
       )}
     </div>
   );

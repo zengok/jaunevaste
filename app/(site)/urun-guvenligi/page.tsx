@@ -17,7 +17,7 @@ export default function ProductSafetyPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Ürün Güvenliği
         </h1>
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             Jaune Vaste olarak tüm ürünlerimiz, yürürlükteki kozmetik
             mevzuatına uygun şekilde üretilir ve piyasaya sunulmadan önce
@@ -29,7 +29,7 @@ export default function ProductSafetyPage() {
           <p>
             Ürünlerimizin ÜTS (Ürün Takip Sistemi) kayıt bilgilerine her
             ürün detay sayfasından ulaşabilir, barkod bilgisiyle{" "}
-            <Link href="/uts-bilgilendirme" className="text-gold hover:underline">
+            <Link href="/uts-bilgilendirme" className="text-primary hover:underline">
               resmi ÜTS sorgulama sayfası
             </Link>{" "}
             üzerinden doğrulama yapabilirsiniz.
@@ -50,7 +50,7 @@ export default function ProductSafetyPage() {
           <p>
             Ürünlerimizle ilgili herhangi bir olumsuz durumla karşılaşmanız
             halinde lütfen{" "}
-            <Link href="/iletisim" className="text-gold hover:underline">
+            <Link href="/iletisim" className="text-primary hover:underline">
               iletişim sayfamız
             </Link>{" "}
             üzerinden bize bildiriniz.

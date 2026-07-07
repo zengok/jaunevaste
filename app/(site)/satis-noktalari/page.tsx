@@ -24,12 +24,12 @@ export default async function SalesPointsPage() {
           { name: "Satış Noktaları", path: "/satis-noktalari" },
         ])}
       />
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-soft py-12 sm:py-16">
         <Container>
           <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Satış Noktaları
           </h1>
-          <p className="mt-3 max-w-2xl text-base text-ink/65">
+          <p className="mt-3 max-w-2xl text-base text-muted">
             Jaune Vaste ürünlerini yalnızca aşağıdaki resmi satış
             kanallarımızdan satın almanızı öneririz. Resmi kanallar dışındaki
             satışlarda ürün orijinalliği garanti edilemez.
@@ -48,11 +48,11 @@ export default async function SalesPointsPage() {
                   <h2 className="font-display text-xl font-bold text-ink">
                     {point.name}
                   </h2>
-                  <Badge tone={point.type === "online" ? "gold" : "jaune"}>
+                  <Badge tone={point.type === "online" ? "ink" : "soft"}>
                     {point.type === "online" ? "Online" : "Mağaza"}
                   </Badge>
                 </div>
-                <p className="flex-1 text-sm leading-relaxed text-ink/65">
+                <p className="flex-1 text-sm leading-relaxed text-muted">
                   {point.description}
                 </p>
                 {point.url ? (
@@ -60,12 +60,12 @@ export default async function SalesPointsPage() {
                     href={point.url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="rounded-full bg-jaune-500 px-5 py-3 text-center text-sm font-bold text-ink transition-colors hover:bg-jaune-400"
+                    className="rounded-full bg-primary px-5 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-primary-hover"
                   >
                     Mağazaya Git
                   </a>
                 ) : (
-                  <span className="rounded-full border border-ink/10 px-5 py-3 text-center text-sm font-semibold text-ink/40">
+                  <span className="rounded-full border border-hairline px-5 py-3 text-center text-sm font-semibold text-muted">
                     Bağlantı yakında eklenecek
                   </span>
                 )}

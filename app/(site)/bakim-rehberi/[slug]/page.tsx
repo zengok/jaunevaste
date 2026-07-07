@@ -49,21 +49,21 @@ export default async function BlogPostPage({
         ])}
       />
       <article>
-        <header className="bg-cream py-12 sm:py-16">
+        <header className="bg-soft py-12 sm:py-16">
           <Container className="max-w-3xl">
             <Link
               href="/bakim-rehberi"
-              className="text-sm font-semibold text-cocoa hover:text-gold"
+              className="text-sm font-semibold text-primary-soft hover:text-primary"
             >
               ← Bakım Rehberi
             </Link>
-            <p className="mt-6 text-xs font-bold uppercase tracking-widest text-gold">
+            <p className="mt-6 text-xs font-bold uppercase tracking-widest text-primary-soft">
               {post.category}
             </p>
             <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
               {post.title}
             </h1>
-            <p className="mt-4 text-sm font-semibold text-ink/45">
+            <p className="mt-4 text-sm font-semibold text-muted">
               {new Date(post.date).toLocaleDateString("tr-TR", {
                 year: "numeric",
                 month: "long",
@@ -86,7 +86,7 @@ export default async function BlogPostPage({
                 {section.paragraphs.map((paragraph, j) => (
                   <p
                     key={j}
-                    className="mb-4 text-base leading-relaxed text-ink/75"
+                    className="mb-4 text-base leading-relaxed text-muted"
                   >
                     {paragraph}
                   </p>
@@ -94,11 +94,11 @@ export default async function BlogPostPage({
               </section>
             ))}
 
-            <div className="mt-12 rounded-card bg-cream p-8 text-center">
+            <div className="mt-12 rounded-card bg-soft p-8 text-center">
               <h2 className="font-display text-xl font-bold text-ink">
                 Bakım rutininize uygun ürünü keşfedin
               </h2>
-              <p className="mt-2 text-sm text-ink/60">
+              <p className="mt-2 text-sm text-muted">
                 Jaune Vaste ürünlerini inceleyin, size en uygun olanı bulun.
               </p>
               <div className="mt-5">

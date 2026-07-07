@@ -24,12 +24,12 @@ export default async function BlogIndexPage() {
           { name: "Bakım Rehberi", path: "/bakim-rehberi" },
         ])}
       />
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-soft py-12 sm:py-16">
         <Container>
           <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Bakım Rehberi
           </h1>
-          <p className="mt-3 max-w-2xl text-base text-ink/65">
+          <p className="mt-3 max-w-2xl text-base text-muted">
             Doğru bakım, doğru bilgiyle başlar. Günlük rutininizi geliştirecek
             içerikleri keşfedin.
           </p>
@@ -43,16 +43,16 @@ export default async function BlogIndexPage() {
                 key={post.slug}
                 className="group flex flex-col rounded-card bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
               >
-                <span className="text-xs font-bold uppercase tracking-widest text-cocoa">
+                <span className="text-xs font-bold uppercase tracking-widest text-primary-soft">
                   {post.category}
                 </span>
-                <h2 className="mt-3 font-display text-xl font-bold text-ink group-hover:text-gold">
+                <h2 className="mt-3 font-display text-xl font-bold text-ink group-hover:text-primary">
                   <Link href={`/bakim-rehberi/${post.slug}`}>{post.title}</Link>
                 </h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/60">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
                   {post.excerpt}
                 </p>
-                <p className="mt-4 text-xs font-semibold text-ink/40">
+                <p className="mt-4 text-xs font-semibold text-muted">
                   {post.readingMinutes} dk okuma
                 </p>
               </article>

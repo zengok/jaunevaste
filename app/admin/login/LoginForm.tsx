@@ -18,7 +18,7 @@ export function LoginForm() {
           required
           autoComplete="username"
           autoFocus
-          className="mt-1.5 w-full rounded-xl border border-ink/10 bg-ivory px-4 py-3 text-sm focus:border-gold focus:outline-none"
+          className="mt-1.5 w-full rounded-xl border border-hairline bg-ivory px-4 py-3 text-sm focus:border-primary focus:outline-none"
         />
       </label>
       <label className="block">
@@ -28,12 +28,12 @@ export function LoginForm() {
           name="password"
           required
           autoComplete="current-password"
-          className="mt-1.5 w-full rounded-xl border border-ink/10 bg-ivory px-4 py-3 text-sm focus:border-gold focus:outline-none"
+          className="mt-1.5 w-full rounded-xl border border-hairline bg-ivory px-4 py-3 text-sm focus:border-primary focus:outline-none"
         />
       </label>
 
       {state.error && (
-        <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-xl bg-error/10 px-4 py-3 text-sm text-error">
           {state.error}
         </p>
       )}
@@ -41,7 +41,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-full bg-jaune-500 px-6 py-3 text-sm font-bold text-ink shadow-soft transition-all hover:bg-jaune-400 disabled:opacity-60"
+        className="w-full rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-soft transition-all hover:bg-primary-hover disabled:opacity-60"
       >
         {pending ? "Kontrol ediliyor..." : "Giriş Yap"}
       </button>

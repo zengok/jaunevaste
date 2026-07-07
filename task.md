@@ -30,6 +30,15 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [x] Tailwind CSS yapılandırıldı
 - [x] Jaune Vaste design system eklendi (`app/globals.css`): marka renkleri,
       tipografi (Manrope + Playfair Display), radius/gölge tokenları
+- [x] **Design system v2 — premium rebrand**: ana marka rengi Royal Plum
+      (`primary` #2E1A47) olacak şekilde tüm renk paleti yenilendi (ivory
+      zemin, soft mauve section arka planları, Champagne Gold yalnızca
+      rozet/yıldızlarda, Berry Wine parfüm koleksiyonuna özel, Sage doğal
+      seri vurgusu). ~40 dosyada CTA butonları, nav, badge'ler, form
+      focus durumları, admin panel durum renkleri (başarı/hata) gözden
+      geçirildi; placeholder ürün/hero SVG'leri de yeni palete göre
+      yeniden üretildi. Detaylar `app/globals.css` içindeki token
+      yorumlarında.
 - [x] Repo klasör düzeni oluşturuldu (`app/`, `components/`, `data/`, `lib/`)
 - [x] GitHub'a ilk commit + branch push edildi
 - [ ] Ayrı staging/deployment ortamı açılacak (Vercel/Cloudflare Pages) —

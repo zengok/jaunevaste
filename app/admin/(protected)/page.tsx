@@ -25,7 +25,7 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <h1 className="font-display text-2xl font-bold text-ink">Dashboard</h1>
-      <p className="mt-1 text-sm text-ink/55">
+      <p className="mt-1 text-sm text-muted">
         Jaune Vaste içerik durumuna genel bakış.
       </p>
 
@@ -48,13 +48,13 @@ export default async function AdminDashboardPage() {
           <h2 className="font-display text-lg font-bold text-ink">Son Yorumlar</h2>
           <ul className="mt-4 space-y-3">
             {recentReviews.map((review) => (
-              <li key={review.id} className="border-b border-ink/5 pb-3 text-sm last:border-0">
+              <li key={review.id} className="border-b border-hairline pb-3 text-sm last:border-0">
                 <p className="font-semibold text-ink">{review.maskedName} · {review.rating}/5</p>
-                <p className="mt-0.5 text-ink/60">{review.text}</p>
+                <p className="mt-0.5 text-muted">{review.text}</p>
               </li>
             ))}
           </ul>
-          <Link href="/admin/yorumlar" className="mt-4 inline-block text-sm font-bold text-gold">
+          <Link href="/admin/yorumlar" className="mt-4 inline-block text-sm font-bold text-primary">
             Tüm yorumları gör →
           </Link>
         </div>
@@ -62,18 +62,18 @@ export default async function AdminDashboardPage() {
         <div className="rounded-card bg-white p-6 shadow-soft">
           <h2 className="font-display text-lg font-bold text-ink">SEO Uyarıları</h2>
           {audits.length === 0 ? (
-            <p className="mt-4 text-sm text-ink/55">Aktif bir SEO uyarısı yok.</p>
+            <p className="mt-4 text-sm text-muted">Aktif bir SEO uyarısı yok.</p>
           ) : (
             <ul className="mt-4 space-y-3">
               {audits.slice(0, 5).map(({ product, warnings }) => (
-                <li key={product.id} className="border-b border-ink/5 pb-3 text-sm last:border-0">
+                <li key={product.id} className="border-b border-hairline pb-3 text-sm last:border-0">
                   <p className="font-semibold text-ink">{product.name}</p>
-                  <p className="mt-0.5 text-ink/55">{warnings.length} uyarı</p>
+                  <p className="mt-0.5 text-muted">{warnings.length} uyarı</p>
                 </li>
               ))}
             </ul>
           )}
-          <Link href="/admin/seo" className="mt-4 inline-block text-sm font-bold text-gold">
+          <Link href="/admin/seo" className="mt-4 inline-block text-sm font-bold text-primary">
             Tüm SEO detaylarını gör →
           </Link>
         </div>

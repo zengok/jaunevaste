@@ -14,7 +14,7 @@ export default async function EditProductPage({
 
   return (
     <div>
-      <Link href="/admin/urunler" className="text-sm font-semibold text-cocoa hover:text-gold">
+      <Link href="/admin/urunler" className="text-sm font-semibold text-primary-soft hover:text-primary">
         ← Ürünler
       </Link>
       <h1 className="mt-3 font-display text-2xl font-bold text-ink">{product.name} — Düzenle</h1>

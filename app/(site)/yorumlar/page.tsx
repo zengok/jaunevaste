@@ -24,12 +24,12 @@ export default async function ReviewsPage() {
           { name: "Müşteri Yorumları", path: "/yorumlar" },
         ])}
       />
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-soft py-12 sm:py-16">
         <Container>
           <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Müşteri Yorumları
           </h1>
-          <p className="mt-3 max-w-2xl text-base text-ink/65">
+          <p className="mt-3 max-w-2xl text-base text-muted">
             Kullanıcılarımızın gerçek deneyimleri. Kişisel veriler, KVKK
             kapsamında kullanıcı adları maskelenerek paylaşılmaktadır.
           </p>
@@ -42,7 +42,7 @@ export default async function ReviewsPage() {
               <ReviewCard key={review.id} review={review} />
             ))}
           </div>
-          <p className="mt-10 rounded-2xl bg-white p-5 text-center text-xs text-ink/50 shadow-soft">
+          <p className="mt-10 rounded-2xl bg-white p-5 text-center text-xs text-muted shadow-soft">
             Yorumlar; resmi satış kanallarımızdaki gerçek müşteri
             değerlendirmelerinden, kişisel veriler maskelenerek ve kaynak
             belirtilerek derlenmektedir.

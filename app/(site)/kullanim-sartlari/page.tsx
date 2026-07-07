@@ -17,7 +17,7 @@ export default function TermsPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Kullanım Şartları
         </h1>
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             {site.url} adresli internet sitesini kullanarak aşağıdaki
             şartları kabul etmiş sayılırsınız.

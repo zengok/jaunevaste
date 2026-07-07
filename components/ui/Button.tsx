@@ -3,12 +3,11 @@ import type { ReactNode } from "react";
 
 const variants = {
   primary:
-    "bg-jaune-500 text-ink hover:bg-jaune-400 shadow-soft hover:shadow-lift",
-  secondary:
-    "bg-ink text-white hover:bg-ink/85",
+    "bg-primary text-white hover:bg-primary-hover shadow-soft hover:shadow-lift",
+  secondary: "bg-primary-soft text-white hover:bg-primary",
   outline:
-    "border border-ink/15 bg-white/60 text-ink hover:border-gold hover:text-gold",
-  ghost: "text-cocoa hover:text-gold",
+    "border border-primary bg-white text-primary hover:bg-soft",
+  ghost: "text-muted hover:text-primary",
 } as const;
 
 const sizes = {

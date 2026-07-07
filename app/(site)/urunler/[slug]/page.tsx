@@ -86,22 +86,22 @@ export default async function ProductDetailPage({
         ])}
       />
 
-      <section className="bg-cream py-10 sm:py-16">
+      <section className="bg-soft py-10 sm:py-16">
         <Container>
-          <nav aria-label="breadcrumb" className="mb-6 text-sm text-ink/50">
+          <nav aria-label="breadcrumb" className="mb-6 text-sm text-muted">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
-                <Link href="/" className="hover:text-gold">Anasayfa</Link>
+                <Link href="/" className="hover:text-primary">Anasayfa</Link>
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/urunler" className="hover:text-gold">Ürünlerimiz</Link>
+                <Link href="/urunler" className="hover:text-primary">Ürünlerimiz</Link>
               </li>
               {category && (
                 <>
                   <li aria-hidden="true">/</li>
                   <li>
-                    <Link href={`/kategori/${category.slug}`} className="hover:text-gold">
+                    <Link href={`/kategori/${category.slug}`} className="hover:text-primary">
                       {category.name}
                     </Link>
                   </li>
@@ -134,14 +134,14 @@ export default async function ProductDetailPage({
             {/* Ürün bilgisi */}
             <div className="flex flex-col">
               {category && (
-                <span className="text-xs font-bold uppercase tracking-widest text-cocoa">
+                <span className="text-xs font-bold uppercase tracking-widest text-primary-soft">
                   {category.name}
                 </span>
               )}
               <h1 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
                 {product.name}
               </h1>
-              <p className="mt-3 text-lg text-ink/70">{product.shortBenefit}</p>
+              <p className="mt-3 text-lg text-muted">{product.shortBenefit}</p>
               {product.rating != null && (
                 <div className="mt-3">
                   <RatingStars
@@ -153,9 +153,9 @@ export default async function ProductDetailPage({
 
               <ul className="mt-6 space-y-2.5">
                 {product.benefits.map((benefit) => (
-                  <li key={benefit} className="flex items-start gap-3 text-sm text-ink/75">
+                  <li key={benefit} className="flex items-start gap-3 text-sm text-muted">
                     <svg
-                      className="mt-0.5 h-5 w-5 shrink-0 text-gold"
+                      className="mt-0.5 h-5 w-5 shrink-0 text-primary-soft"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -176,14 +176,14 @@ export default async function ProductDetailPage({
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="rounded-full bg-jaune-500 px-6 py-3.5 text-center text-base font-bold text-ink shadow-soft transition-all hover:bg-jaune-400 hover:shadow-lift"
+                    className="rounded-full bg-primary px-6 py-3.5 text-center text-base font-bold text-white shadow-soft transition-all hover:bg-primary-hover hover:shadow-lift"
                   >
                     {link.platform}&apos;da Satın Al
                   </a>
                 ))}
                 <Link
                   href="/satis-noktalari"
-                  className="rounded-full border border-ink/15 px-6 py-3.5 text-center text-base font-semibold text-ink/70 transition-colors hover:border-gold hover:text-gold"
+                  className="rounded-full border border-hairline px-6 py-3.5 text-center text-base font-semibold text-muted transition-colors hover:border-primary hover:text-primary"
                 >
                   Tüm Satış Noktalarını Gör
                 </Link>
@@ -191,14 +191,14 @@ export default async function ProductDetailPage({
 
               <dl className="mt-8 grid grid-cols-2 gap-4 rounded-2xl bg-white/70 p-5 text-sm">
                 <div>
-                  <dt className="font-bold text-ink/45">SKU</dt>
+                  <dt className="font-bold text-muted">SKU</dt>
                   <dd className="mt-1 font-semibold text-ink">{product.sku}</dd>
                 </div>
                 <div>
-                  <dt className="font-bold text-ink/45">ÜTS Kaydı</dt>
+                  <dt className="font-bold text-muted">ÜTS Kaydı</dt>
                   <dd className="mt-1 font-semibold text-ink">
                     {product.utsRegistered ? (
-                      <Link href="/uts-bilgilendirme" className="text-gold hover:underline">
+                      <Link href="/uts-bilgilendirme" className="text-primary hover:underline">
                         Kayıtlı ürün ✓
                       </Link>
                     ) : (
@@ -215,14 +215,14 @@ export default async function ProductDetailPage({
       <section className="py-12 sm:py-16">
         <Container className="grid gap-6 lg:grid-cols-2">
           <InfoBlock title="Ürün Açıklaması">
-            <p className="text-sm leading-relaxed text-ink/70">
+            <p className="text-sm leading-relaxed text-muted">
               {product.description}
             </p>
           </InfoBlock>
           <InfoBlock title="Nasıl Kullanılır?">
-            <p className="text-sm leading-relaxed text-ink/70">{product.usage}</p>
+            <p className="text-sm leading-relaxed text-muted">{product.usage}</p>
             <h3 className="mt-5 text-sm font-bold text-ink">Kimler için uygun?</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink/70">
+            <p className="mt-2 text-sm leading-relaxed text-muted">
               {product.suitableFor}
             </p>
           </InfoBlock>
@@ -230,7 +230,7 @@ export default async function ProductDetailPage({
             <InfoBlock title="İçerik Bilgisi">
               <div className="flex flex-wrap gap-2">
                 {product.ingredients.map((ingredient) => (
-                  <Badge key={ingredient} tone="jaune">
+                  <Badge key={ingredient} tone="soft">
                     {ingredient}
                   </Badge>
                 ))}
@@ -239,10 +239,10 @@ export default async function ProductDetailPage({
           )}
           {product.warnings && product.warnings.length > 0 && (
             <InfoBlock title="Uyarılar">
-              <ul className="space-y-2 text-sm leading-relaxed text-ink/70">
+              <ul className="space-y-2 text-sm leading-relaxed text-muted">
                 {product.warnings.map((warning) => (
                   <li key={warning} className="flex items-start gap-2">
-                    <span className="text-gold" aria-hidden="true">•</span>
+                    <span className="text-primary-soft" aria-hidden="true">•</span>
                     {warning}
                   </li>
                 ))}
@@ -253,7 +253,7 @@ export default async function ProductDetailPage({
       </section>
 
       {reviews.length > 0 && (
-        <section className="bg-cream py-12 sm:py-16">
+        <section className="bg-soft py-12 sm:py-16">
           <Container>
             <h2 className="mb-8 font-display text-2xl font-bold text-ink">
               Müşteri Yorumları

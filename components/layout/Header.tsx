@@ -19,13 +19,13 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/5 bg-ivory/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-ivory/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between sm:h-20">
         <Link href="/" className="flex items-baseline gap-1" aria-label="Jaune Vaste anasayfa">
-          <span className="font-display text-2xl font-bold tracking-tight text-ink">
+          <span className="font-display text-2xl font-bold tracking-tight text-primary">
             Jaune
           </span>
-          <span className="font-display text-2xl font-bold tracking-tight text-gold">
+          <span className="font-display text-2xl font-bold tracking-tight text-primary-soft">
             Vaste
           </span>
         </Link>
@@ -41,7 +41,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={`text-sm font-semibold transition-colors ${
-                  active ? "text-gold" : "text-ink/70 hover:text-ink"
+                  active ? "text-primary" : "text-muted hover:text-ink"
                 }`}
               >
                 {item.label}
@@ -50,7 +50,7 @@ export function Header() {
           })}
           <Link
             href="/urunler"
-            className="rounded-full bg-jaune-500 px-5 py-2.5 text-sm font-bold text-ink shadow-soft transition-all hover:bg-jaune-400 hover:shadow-lift"
+            className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-all hover:bg-primary-hover hover:shadow-lift"
           >
             Ürünleri Keşfet
           </Link>
@@ -82,7 +82,7 @@ export function Header() {
 
       {open && (
         <nav
-          className="border-t border-ink/5 bg-ivory px-4 pb-6 pt-2 lg:hidden"
+          className="border-t border-hairline bg-ivory px-4 pb-6 pt-2 lg:hidden"
           aria-label="Mobil menü"
         >
           {navItems.map((item) => (
@@ -90,7 +90,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-xl px-4 py-3 text-base font-semibold text-ink/80 hover:bg-cream hover:text-ink"
+              className="block rounded-xl px-4 py-3 text-base font-semibold text-muted hover:bg-soft hover:text-ink"
             >
               {item.label}
             </Link>
@@ -98,7 +98,7 @@ export function Header() {
           <Link
             href="/urunler"
             onClick={() => setOpen(false)}
-            className="mt-3 block rounded-full bg-jaune-500 px-5 py-3 text-center text-base font-bold text-ink"
+            className="mt-3 block rounded-full bg-primary px-5 py-3 text-center text-base font-bold text-white"
           >
             Ürünleri Keşfet
           </Link>

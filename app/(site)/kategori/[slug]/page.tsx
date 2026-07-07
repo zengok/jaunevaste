@@ -48,15 +48,19 @@ export default async function CategoryPage({
           { name: category.name, path: `/kategori/${category.slug}` },
         ])}
       />
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-soft py-12 sm:py-16">
         <Container>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
               {category.name}
             </h1>
-            {category.comingSoon && <Badge tone="ink">Yakında</Badge>}
+            {category.comingSoon && (
+              <Badge tone={category.slug === "parfum" ? "berry" : "ink"}>
+                Yakında
+              </Badge>
+            )}
           </div>
-          <p className="mt-3 max-w-2xl text-base text-ink/65">
+          <p className="mt-3 max-w-2xl text-base text-muted">
             {category.description}
           </p>
         </Container>
@@ -70,7 +74,7 @@ export default async function CategoryPage({
                   ? "Bu koleksiyon çok yakında sizlerle."
                   : "Bu kategoride henüz ürün bulunmuyor."}
               </p>
-              <p className="mt-2 text-sm text-ink/55">
+              <p className="mt-2 text-sm text-muted">
                 Yeniliklerden haberdar olmak için bizi Instagram üzerinden takip
                 edebilirsiniz.
               </p>

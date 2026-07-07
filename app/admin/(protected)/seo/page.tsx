@@ -10,7 +10,7 @@ export default async function AdminSeoPage() {
   return (
     <div>
       <h1 className="font-display text-2xl font-bold text-ink">SEO Sağlığı</h1>
-      <p className="mt-1 text-sm text-ink/55">
+      <p className="mt-1 text-sm text-muted">
         {withWarnings.length} üründe toplam {totalWarnings} uyarı.
       </p>
 
@@ -38,7 +38,7 @@ export default async function AdminSeoPage() {
         </div>
       )}
 
-      <p className="mt-6 text-xs text-ink/45">
+      <p className="mt-6 text-xs text-muted">
         Bu denetim yalnızca temel kuralları (başlık/açıklama uzunluğu, alt
         text, barkod, SSS) kapsar. Kapsamlı SEO denetimi (broken link, index
         durumu vb.) için Search Console entegrasyonu gereklidir — bkz.

@@ -31,7 +31,7 @@ export default function CookiePolicyPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Çerez Politikası
         </h1>
-        <p className="mt-6 text-sm leading-relaxed text-ink/75">
+        <p className="mt-6 text-sm leading-relaxed text-muted">
           Web sitemiz, deneyiminizi iyileştirmek amacıyla çerezler
           kullanmaktadır. Aşağıda kullanılan çerez türleri ve amaçları
           açıklanmıştır.
@@ -42,13 +42,13 @@ export default function CookiePolicyPage() {
               <h2 className="font-display text-base font-bold text-ink">
                 {cookie.name}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">
+              <p className="mt-2 text-sm leading-relaxed text-muted">
                 {cookie.text}
               </p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-sm leading-relaxed text-ink/75">
+        <p className="mt-8 text-sm leading-relaxed text-muted">
           Tarayıcı ayarlarınız üzerinden çerezleri yönetebilir veya
           silebilirsiniz. Zorunlu çerezlerin devre dışı bırakılması, sitenin
           bazı bölümlerinin düzgün çalışmamasına neden olabilir.

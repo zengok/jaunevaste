@@ -13,7 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
     <article className="group flex flex-col overflow-hidden rounded-card bg-white shadow-soft transition-shadow hover:shadow-lift">
       <Link
         href={`/urunler/${product.slug}`}
-        className="relative block aspect-square overflow-hidden bg-cream"
+        className="relative block aspect-square overflow-hidden bg-soft"
       >
         <Image
           src={cover.src}
@@ -30,16 +30,16 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col gap-2.5 p-5">
         {category && (
-          <span className="text-xs font-bold uppercase tracking-widest text-cocoa">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary-soft">
             {category.name}
           </span>
         )}
         <h3 className="font-display text-lg font-bold text-ink">
-          <Link href={`/urunler/${product.slug}`} className="hover:text-gold">
+          <Link href={`/urunler/${product.slug}`} className="hover:text-primary">
             {product.name}
           </Link>
         </h3>
-        <p className="text-sm leading-relaxed text-ink/60">
+        <p className="text-sm leading-relaxed text-muted">
           {product.shortBenefit}
         </p>
         {product.rating != null && (
@@ -49,7 +49,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="mt-auto flex flex-col gap-2 pt-3">
           <Link
             href={`/urunler/${product.slug}`}
-            className="rounded-full bg-jaune-500 px-5 py-2.5 text-center text-sm font-bold text-ink transition-colors hover:bg-jaune-400"
+            className="rounded-full bg-primary px-5 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-primary-hover"
           >
             Detayları İncele
           </Link>
@@ -58,7 +58,7 @@ export function ProductCard({ product }: { product: Product }) {
               href={product.marketplaceLinks[0].url}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="rounded-full border border-ink/10 px-5 py-2.5 text-center text-sm font-semibold text-ink/70 transition-colors hover:border-gold hover:text-gold"
+              className="rounded-full border border-hairline px-5 py-2.5 text-center text-sm font-semibold text-muted transition-colors hover:border-primary hover:text-primary"
             >
               {product.marketplaceLinks[0].platform}&apos;da Satın Al
             </a>

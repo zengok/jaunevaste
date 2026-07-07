@@ -11,12 +11,12 @@ export default async function AdminReviewsPage() {
   return (
     <div>
       <h1 className="font-display text-2xl font-bold text-ink">Müşteri Yorumları</h1>
-      <p className="mt-1 text-sm text-ink/55">{reviews.length} yorum</p>
+      <p className="mt-1 text-sm text-muted">{reviews.length} yorum</p>
 
       <div className="mt-6 overflow-x-auto rounded-card bg-white shadow-soft">
         <table className="w-full min-w-[820px] text-left text-sm">
           <thead>
-            <tr className="border-b border-ink/8 text-xs font-bold uppercase tracking-wider text-ink/45">
+            <tr className="border-b border-hairline text-xs font-bold uppercase tracking-wider text-muted">
               <th className="px-5 py-3">Kullanıcı</th>
               <th className="px-5 py-3">Ürün</th>
               <th className="px-5 py-3">Puan</th>
@@ -29,17 +29,17 @@ export default async function AdminReviewsPage() {
             {reviews.map((review) => {
               const product = products.find((p) => p.slug === review.productSlug);
               return (
-                <tr key={review.id} className="border-b border-ink/5 last:border-0 align-top">
+                <tr key={review.id} className="border-b border-hairline last:border-0 align-top">
                   <td className="px-5 py-3 font-semibold text-ink">{review.maskedName}</td>
-                  <td className="px-5 py-3 text-ink/65">{product?.name ?? "Genel"}</td>
-                  <td className="px-5 py-3 text-ink/65">{review.rating}/5</td>
-                  <td className="max-w-sm px-5 py-3 text-ink/65">{review.text}</td>
+                  <td className="px-5 py-3 text-muted">{product?.name ?? "Genel"}</td>
+                  <td className="px-5 py-3 text-muted">{review.rating}/5</td>
+                  <td className="max-w-sm px-5 py-3 text-muted">{review.text}</td>
                   <td className="px-5 py-3">
                     <span
                       className={`rounded-full px-2.5 py-1 text-xs font-bold ${
                         review.published
-                          ? "bg-green-100 text-green-800"
-                          : "bg-ink/8 text-ink/60"
+                          ? "bg-success/10 text-success"
+                          : "bg-ink/8 text-muted"
                       }`}
                     >
                       {review.published ? "Yayında" : "Gizli"}
@@ -50,14 +50,14 @@ export default async function AdminReviewsPage() {
                       action={toggleReviewPublished.bind(null, review.id, !review.published)}
                       className="inline"
                     >
-                      <button type="submit" className="text-xs font-bold text-gold hover:underline">
+                      <button type="submit" className="text-xs font-bold text-primary hover:underline">
                         {review.published ? "Gizle" : "Yayınla"}
                       </button>
                     </form>
                     <form action={deleteReview.bind(null, review.id)} className="ml-3 inline">
                       <ConfirmSubmitButton
                         confirmMessage="Bu yorumu kalıcı olarak silmek istediğinize emin misiniz?"
-                        className="text-xs font-bold text-red-600 hover:underline"
+                        className="text-xs font-bold text-error hover:underline"
                       >
                         Sil
                       </ConfirmSubmitButton>
@@ -70,7 +70,7 @@ export default async function AdminReviewsPage() {
         </table>
       </div>
 
-      <p className="mt-4 text-xs text-ink/45">
+      <p className="mt-4 text-xs text-muted">
         Yayından gizlenen yorumlar sitede ve ürün detay sayfalarında
         görünmez ama veritabanında saklanır. Silme işlemi kalıcıdır.
       </p>

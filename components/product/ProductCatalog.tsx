@@ -51,7 +51,7 @@ export function ProductCatalog({
           <label className="relative flex-1">
             <span className="sr-only">Ürün ara</span>
             <svg
-              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink/35"
+              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -69,7 +69,7 @@ export function ProductCatalog({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Ürün ara: lip balm, tırnak yağı..."
-              className="w-full rounded-full border border-ink/10 bg-white py-3 pl-12 pr-5 text-sm text-ink placeholder:text-ink/35 focus:border-gold focus:outline-none"
+              className="w-full rounded-full border border-hairline bg-white py-3 pl-12 pr-5 text-sm text-ink placeholder:text-muted focus:border-primary focus:outline-none"
             />
           </label>
           <label>
@@ -77,7 +77,7 @@ export function ProductCatalog({
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortOption)}
-              className="w-full rounded-full border border-ink/10 bg-white px-5 py-3 text-sm font-semibold text-ink focus:border-gold focus:outline-none sm:w-auto"
+              className="w-full rounded-full border border-hairline bg-white px-5 py-3 text-sm font-semibold text-ink focus:border-primary focus:outline-none sm:w-auto"
             >
               <option value="onerilen">Önerilen Sıralama</option>
               <option value="cok-satan">Çok Satanlar</option>
@@ -98,8 +98,8 @@ export function ProductCatalog({
             onClick={() => setCategory("")}
             className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
               category === ""
-                ? "bg-ink text-white"
-                : "bg-white text-ink/65 shadow-soft hover:text-ink"
+                ? "bg-primary text-white"
+                : "bg-white text-muted shadow-soft hover:text-ink"
             }`}
           >
             Tümü
@@ -111,8 +111,8 @@ export function ProductCatalog({
               onClick={() => setCategory(category === c.slug ? "" : c.slug)}
               className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                 category === c.slug
-                  ? "bg-ink text-white"
-                  : "bg-white text-ink/65 shadow-soft hover:text-ink"
+                  ? "bg-primary text-white"
+                  : "bg-white text-muted shadow-soft hover:text-ink"
               }`}
             >
               {c.name}
@@ -122,7 +122,7 @@ export function ProductCatalog({
       </div>
 
       {filtered.length === 0 ? (
-        <p className="rounded-card bg-white p-10 text-center text-ink/55 shadow-soft">
+        <p className="rounded-card bg-white p-10 text-center text-muted shadow-soft">
           Aramanızla eşleşen ürün bulunamadı. Farklı bir kelime deneyin veya
           filtreleri temizleyin.
         </p>

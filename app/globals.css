@@ -1,38 +1,45 @@
 @import "tailwindcss";
 
 /*
-  Jaune Vaste Design System
-  Aydınlık, premium ama ulaşılabilir marka dili.
-  Renk paleti proje planında tanımlanan marka renkleridir.
+  Jaune Vaste Design System v2 — Premium Kozmetik Marka Kimliği
+  Royal Plum ana marka rengi, ivory/beyaz dominant zemin, Champagne Gold
+  yalnızca premium vurgularda, Berry (parfüm) ve Sage (doğal seri) ikincil
+  vurgu renkleri. Hedef oran: %60 ivory/beyaz, %25 plum, %10 soft mauve/sage,
+  %5 gold/berry.
 */
 @theme {
-  /* Marka renkleri */
-  --color-jaune-50: #fffdf5;
-  --color-jaune-100: #fff8e7; /* açık krem */
-  --color-jaune-200: #fdeec2;
-  --color-jaune-300: #fadf94;
-  --color-jaune-400: #f8d367;
-  --color-jaune-500: #f5c542; /* ana sarı */
-  --color-jaune-600: #c99a2e; /* altın vurgu */
-  --color-jaune-700: #a37c22;
-  --color-jaune-800: #7d5e1a;
-  --color-jaune-900: #5c4513;
+  /* Ana marka — Royal Plum */
+  --color-primary: #2e1a47;
+  --color-primary-hover: #3b2458;
+  --color-primary-soft: #6f4b7c; /* Deep Mauve — hover, ikon, kategori vurgusu */
 
-  --color-ivory: #fafaf7; /* kırık beyaz */
-  --color-cream: #fff8e7; /* açık krem */
-  --color-ink: #1f1f1f; /* koyu antrasit */
-  --color-cocoa: #8a6a3f; /* yumuşak kahve */
-  --color-gold: #c99a2e; /* altın vurgu */
-  --color-nude: #e9d5c0; /* soft nude */
+  /* Zemin */
+  --color-ivory: #faf7f2; /* genel sayfa zemini */
+  --color-soft: #f4edf4; /* soft mauve section background */
 
-  /* Tipografi */
+  /* Premium vurgular */
+  --color-gold: #c9a44c; /* Champagne Gold — rozet, yıldız, özel vurgu (sınırlı kullanım) */
+  --color-gold-soft: #e7d6a0;
+  --color-berry: #8a1e4a; /* Berry Wine — parfüm koleksiyonu, özel seri */
+  --color-sage: #a8b89a; /* Sage — doğal seri, bakım mesajları */
+
+  /* Metin */
+  --color-ink: #1f1f24; /* ana metin */
+  --color-muted: #6f6a70; /* açıklama metinleri */
+
+  /* Kenarlık ve durum renkleri */
+  --color-hairline: #e8e1e8;
+  --color-success: #5e7f5a;
+  --color-error: #c24141;
+
+  /* Tipografi: gövde Manrope, başlıklarda premium serif */
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-playfair), ui-serif, Georgia, serif;
 
-  /* Yuvarlatılmış kartlar ve yumuşak gölgeler */
+  /* Yuvarlatılmış kartlar ve yumuşak gölgeler (hafif plum tonlu) */
   --radius-card: 1.25rem;
-  --shadow-soft: 0 4px 24px -6px rgb(31 31 31 / 0.08);
-  --shadow-lift: 0 12px 40px -12px rgb(31 31 31 / 0.16);
+  --shadow-soft: 0 4px 24px -6px rgb(46 26 71 / 0.08);
+  --shadow-lift: 0 12px 40px -12px rgb(46 26 71 / 0.18);
 }
 
 html {
@@ -47,12 +54,12 @@ body {
 }
 
 ::selection {
-  background: var(--color-jaune-300);
+  background: var(--color-gold-soft);
   color: var(--color-ink);
 }
 
 /* Erişilebilirlik: klavye odak halkası */
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }

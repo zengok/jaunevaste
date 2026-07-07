@@ -22,7 +22,7 @@ export default async function VerifyPage() {
         <h1 className="font-display text-2xl font-bold text-ink">
           İki Adımlı Doğrulama
         </h1>
-        <p className="mt-1 text-sm text-ink/55">
+        <p className="mt-1 text-sm text-muted">
           Authenticator uygulamanızdaki 6 haneli kodu girin.
         </p>
         <div className="mt-6">

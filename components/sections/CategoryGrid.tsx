@@ -33,9 +33,13 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
                   <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
                     {category.name}
                   </h3>
-                  <p className="mt-1 text-sm text-ink/55">{category.tagline}</p>
+                  <p className="mt-1 text-sm text-muted">{category.tagline}</p>
                 </div>
-                {category.comingSoon && <Badge tone="ink">Yakında</Badge>}
+                {category.comingSoon && (
+                  <Badge tone={category.slug === "parfum" ? "berry" : "ink"}>
+                    Yakında
+                  </Badge>
+                )}
               </>
             );
             const cardClass =
@@ -52,7 +56,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
                 className={`${cardClass} group hover:-translate-y-1 hover:shadow-lift`}
               >
                 {inner}
-                <span className="mt-auto text-sm font-bold text-gold opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="mt-auto text-sm font-bold text-primary opacity-0 transition-opacity group-hover:opacity-100">
                   Ürünleri gör →
                 </span>
               </Link>

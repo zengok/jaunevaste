@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Gizlilik Politikası
         </h1>
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/75">
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted">
           <p>
             Bu gizlilik politikası, {site.name} internet sitesini ({site.url})
             ziyaret ettiğinizde kişisel verilerinizin nasıl işlendiğini
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
           </h2>
           <p>
             Gizlilik politikamızla ilgili sorularınız için{" "}
-            <a href={`mailto:${site.email}`} className="text-gold hover:underline">
+            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
               {site.email}
             </a>{" "}
             adresinden bize ulaşabilirsiniz.

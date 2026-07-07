@@ -20,13 +20,13 @@ function Field({
     <label className="block">
       <span className="text-sm font-semibold text-ink">{label}</span>
       <div className="mt-1.5">{children}</div>
-      {error && <p className="mt-1 text-xs font-semibold text-red-600">{error}</p>}
+      {error && <p className="mt-1 text-xs font-semibold text-error">{error}</p>}
     </label>
   );
 }
 
 const inputClass =
-  "w-full rounded-xl border border-ink/10 bg-ivory px-4 py-2.5 text-sm focus:border-gold focus:outline-none";
+  "w-full rounded-xl border border-hairline bg-ivory px-4 py-2.5 text-sm focus:border-primary focus:outline-none";
 
 export function ProductForm({ product }: { product?: Product }) {
   const isEdit = Boolean(product);
@@ -38,7 +38,7 @@ export function ProductForm({ product }: { product?: Product }) {
   return (
     <form action={formAction} className="space-y-8">
       {state.error && (
-        <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-xl bg-error/10 px-4 py-3 text-sm text-error">
           {state.error}
         </p>
       )}
@@ -167,7 +167,7 @@ export function ProductForm({ product }: { product?: Product }) {
           />
         </Field>
       </div>
-      <p className="-mt-4 text-xs text-ink/45">
+      <p className="-mt-4 text-xs text-muted">
         Görsel dosyasının kendisi buradan yüklenmez — dosyayı önce
         public/images/products/ altına koyup yolunu buraya yazın. Görsel
         yükleme özelliği ayrı bir admin geliştirmesi olarak planlandı (bkz.
@@ -217,7 +217,7 @@ export function ProductForm({ product }: { product?: Product }) {
         ].map((flag) => (
           <label
             key={flag.name}
-            className="flex items-center gap-2 rounded-xl border border-ink/10 bg-ivory px-4 py-2.5 text-sm font-semibold text-ink"
+            className="flex items-center gap-2 rounded-xl border border-hairline bg-ivory px-4 py-2.5 text-sm font-semibold text-ink"
           >
             <input
               type="checkbox"
@@ -230,7 +230,7 @@ export function ProductForm({ product }: { product?: Product }) {
         ))}
       </div>
 
-      <p className="text-xs text-ink/45">
+      <p className="text-xs text-muted">
         Not: Puan/yorum sayısı bu formdan yönetilmez — yalnızca doğrulanmış
         gerçek pazaryeri verisiyle veritabanına elle işlenmelidir (sahte veri
         girilmemesi ilkesi, bkz. task.md).
@@ -239,7 +239,7 @@ export function ProductForm({ product }: { product?: Product }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-jaune-500 px-8 py-3 text-sm font-bold text-ink shadow-soft transition-all hover:bg-jaune-400 disabled:opacity-60"
+        className="rounded-full bg-primary px-8 py-3 text-sm font-bold text-white shadow-soft transition-all hover:bg-primary-hover disabled:opacity-60"
       >
         {pending ? "Kaydediliyor..." : isEdit ? "Değişiklikleri Kaydet" : "Ürünü Oluştur"}
       </button>
