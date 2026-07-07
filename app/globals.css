@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Jaune Vaste Design System
+  Aydınlık, premium ama ulaşılabilir marka dili.
+  Renk paleti proje planında tanımlanan marka renkleridir.
+*/
+@theme {
+  /* Marka renkleri */
+  --color-jaune-50: #fffdf5;
+  --color-jaune-100: #fff8e7; /* açık krem */
+  --color-jaune-200: #fdeec2;
+  --color-jaune-300: #fadf94;
+  --color-jaune-400: #f8d367;
+  --color-jaune-500: #f5c542; /* ana sarı */
+  --color-jaune-600: #c99a2e; /* altın vurgu */
+  --color-jaune-700: #a37c22;
+  --color-jaune-800: #7d5e1a;
+  --color-jaune-900: #5c4513;
+
+  --color-ivory: #fafaf7; /* kırık beyaz */
+  --color-cream: #fff8e7; /* açık krem */
+  --color-ink: #1f1f1f; /* koyu antrasit */
+  --color-cocoa: #8a6a3f; /* yumuşak kahve */
+  --color-gold: #c99a2e; /* altın vurgu */
+  --color-nude: #e9d5c0; /* soft nude */
+
+  /* Tipografi */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* Yuvarlatılmış kartlar ve yumuşak gölgeler */
+  --radius-card: 1.25rem;
+  --shadow-soft: 0 4px 24px -6px rgb(31 31 31 / 0.08);
+  --shadow-lift: 0 12px 40px -12px rgb(31 31 31 / 0.16);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-jaune-300);
+  color: var(--color-ink);
+}
+
+/* Erişilebilirlik: klavye odak halkası */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
 }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Vanilya Lip Balm">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="100%" stop-color="#FDEEC2"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <circle cx="300" cy="230" r="130" fill="#F5C542" opacity="0.35"/>
+  <rect x="230" y="160" width="140" height="200" rx="28" fill="#FFFFFF" stroke="#C99A2E" stroke-width="3"/>
+  <rect x="255" y="130" width="90" height="50" rx="14" fill="#8A6A3F"/>
+  <text x="300" y="430" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="30" font-weight="700" fill="#1F1F1F"><tspan x="300" dy="0">Vanilya</tspan><tspan x="300" dy="34">Lip Balm</tspan></text>
+  <text x="300" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="3" fill="#8A6A3F">JAUNE VASTE</text>
+</svg>

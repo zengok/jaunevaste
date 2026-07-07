@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jaune Vaste
 
-## Getting Started
+Jaune Vaste kurumsal/marka web sitesi. Next.js (App Router) + TypeScript +
+Tailwind CSS ile sıfırdan geliştirilmiştir.
 
-First, run the development server:
+## Geliştirme
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 üzerinden açın.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Proje Yapısı
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/            Next.js App Router sayfaları (rota bazlı)
+components/
+  layout/       Header, Footer, WhatsApp butonu
+  sections/     Ana sayfa bölümleri (Hero, kategori grid, vb.)
+  product/      Ürün kartı, filtre/katalog, yorum, SSS bileşenleri
+  ui/           Genel amaçlı UI bileşenleri (Button, Badge, Container)
+  seo/          JSON-LD yapılandırılmış veri bileşeni
+data/           Seed içerik (ürünler, kategoriler, yorumlar, blog)
+lib/
+  cms.ts        İçerik erişim katmanı — ileride CMS entegrasyonunda
+                yalnızca bu dosya değişecek, sayfa kodu değişmeyecek
+  seo.ts        Sayfa metadata üretici
+  schema.ts     JSON-LD şema üreticileri (Product, FAQ, Breadcrumb, ...)
+  security.ts   Content-Security-Policy tanımı
+  site.ts       Site geneli sabitler (isim, iletişim, sosyal linkler)
+  types.ts      Paylaşılan TypeScript tipleri
+proxy.ts        Next.js 16 "proxy" (middleware) — admin paneli için hazır
+```
 
-## Learn More
+## Mevcut Durum ve Sonraki Adımlar
 
-To learn more about Next.js, take a look at the following resources:
+Bu sürüm; marka vitrini, ürün kataloğu, SEO altyapısı (sitemap, robots,
+JSON-LD) ve temel güvenlik başlıklarını içerir. Yayına almadan önce:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `data/products.ts` içindeki görseller gerçek ürün fotoğraflarıyla
+  değiştirilmeli (şu an SVG placeholder kullanılıyor).
+- `lib/site.ts` içindeki iletişim bilgileri (telefon, WhatsApp, adres)
+  güncellenmeli.
+- Gerçek müşteri yorumları, KVKK'ya uygun şekilde `data/reviews.ts`'e
+  eklenmeli.
+- Admin panel / CMS entegrasyonu (Payload CMS veya Strapi) `lib/cms.ts`
+  üzerinden bağlanmalı.
+- `data/categories.ts` içindeki `seo.title` uzunlukları arama sonucu
+  kesilmelerini önlemek için gözden geçirilmeli.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Komutlar
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev      # Geliştirme sunucusu
+npm run build    # Prodüksiyon derlemesi
+npm run lint     # ESLint
+```
