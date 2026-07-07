@@ -31,8 +31,38 @@ lib/
   security.ts   Content-Security-Policy tanımı
   site.ts       Site geneli sabitler (isim, iletişim, sosyal linkler)
   types.ts      Paylaşılan TypeScript tipleri
-proxy.ts        Next.js 16 "proxy" (middleware) — admin paneli için hazır
+proxy.ts        Next.js 16 "proxy" (middleware) — admin route'ları için
+                hızlı ön kontrol (asıl doğrulama admin layout'unda)
+app/admin/
+  login/        Admin girişi (e-posta+şifre → TOTP doğrulama, 2 adım)
+  (protected)/  Oturum açmış admin için dashboard, ürün/kategori/yorum/SEO
+                salt-okunur yönetim ekranları
+lib/admin/
+  auth.ts       Şifre/oturum/pending-token doğrulama (node:crypto, bağımlılıksız)
+  totp.ts       RFC 6238 TOTP üretim/doğrulama (2FA)
+  rateLimit.ts  Bellek-içi brute-force koruması (MVP)
+  log.ts        Giriş denemesi loglama (yerel dosya, MVP)
+  seoAudit.ts   Ürün bazlı otomatik SEO uyarı denetimi
 ```
+
+## Admin Paneli Kurulumu
+
+Admin paneli `/admin` altında çalışır ve e-posta+şifre + zorunlu 2FA (TOTP)
+ile korunur. Kimlik bilgilerini üretmek için:
+
+```bash
+node scripts/generate-admin-credentials.mjs "guclu-bir-sifre"
+```
+
+Çıktıyı `.env.local` dosyanıza kopyalayın (bkz. `.env.example`), TOTP secret'ı
+bir authenticator uygulamasına (Google Authenticator, 1Password vb.) otpauth
+URI'siyle veya Base32 secret'ı manuel girerek ekleyin.
+
+Bu sürümdeki admin paneli **salt okunurdur**: dashboard, ürün/kategori/yorum
+listeleri ve SEO sağlık denetimini gösterir ama düzenleme yapamaz — çünkü
+henüz bir CMS/veritabanı yok ve "kaydet" butonu hiçbir yere yazmayacağı için
+eklenmedi. Sıradaki adım Payload CMS/Strapi entegrasyonudur (bkz. `task.md`
+Faz 4).
 
 ## Mevcut Durum ve Sonraki Adımlar
 

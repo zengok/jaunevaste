@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 const manrope = Manrope({
@@ -55,14 +50,7 @@ export default function RootLayout({
       lang="tr"
       className={`${manrope.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
-        <JsonLd data={organizationSchema()} />
-        <JsonLd data={websiteSchema()} />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppButton />
-      </body>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

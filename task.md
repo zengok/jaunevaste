@@ -78,21 +78,40 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 
 ---
 
-## Faz 4 — Admin Panel ❌ Yapılmadı
+## Faz 4 — Admin Panel ⚙️ Başlandı (Auth + salt okunur yönetim ekranları tamam)
 
-- [ ] Giriş / kimlik doğrulama (e-posta+şifre, 2FA/OTP)
-- [ ] Rol bazlı yetkilendirme
-- [ ] Dashboard (ürün sayısı, taslaklar, son yorumlar, SEO uyarıları)
-- [ ] Ürün yönetimi ekranı
-- [ ] Kategori yönetimi ekranı
-- [ ] Müşteri yorumları yönetimi ekranı
+- [x] Giriş / kimlik doğrulama: e-posta + şifre (scrypt hash, env tabanlı)
+      + zorunlu 2FA/TOTP (RFC 6238, `lib/admin/totp.ts`, harici bağımlılık yok)
+- [x] Oturum yönetimi: HMAC imzalı, httpOnly/secure/sameSite cookie,
+      8 saatlik oturum süresi sınırı (`lib/admin/auth.ts`)
+- [x] Brute-force koruması: bellek-içi rate limiting (şifre + TOTP adımları
+      ayrı ayrı sınırlı — `lib/admin/rateLimit.ts`, MVP/tek-process kapsamlı)
+- [x] Giriş logları: başarılı/başarısız denemeler yerel dosyaya yazılıyor
+      (`lib/admin/log.ts` — prodüksiyonda Sentry/Logtail ile değiştirilmeli)
+- [x] Route koruması iki katmanlı: `proxy.ts` (Edge, hızlı ön kontrol) +
+      `app/admin/(protected)/layout.tsx` (Node, asıl imza/süre doğrulaması) —
+      uçtan uca test edildi: yetkisiz erişim, hatalı şifre, hatalı TOTP,
+      kurcalanmış (tampered) cookie, çıkış sonrası erişim — hepsi reddediliyor
+- [x] Dashboard: toplam/yayında/taslak ürün, çok satan, kategori, yorum,
+      blog yazısı sayıları + son yorumlar + SEO uyarı özeti
+- [x] Ürün yönetimi ekranı (salt okunur tablo: durum, SKU, kategori, SEO uyarı sayısı)
+- [x] Kategori yönetimi ekranı (salt okunur tablo: ürün sayısı, aktif/yakında durumu)
+- [x] Müşteri yorumları yönetimi ekranı (salt okunur tablo)
+- [x] SEO yönetimi ekranı: her ürün için otomatik denetim (başlık/açıklama
+      uzunluğu, eksik alt text, eksik barkod, eksik SSS, eksik doğrulanmış
+      puan — `lib/admin/seoAudit.ts`)
+- [x] `noindex` — tüm `/admin/*` sayfaları arama motorlarından gizli
+- [ ] Rol bazlı yetkilendirme — şu an tek admin rolü var (payload'da `role`
+      alanı hazır ama çoklu kullanıcı/rol yönetimi CMS/DB'siz anlamsız)
+- [ ] Ürün/kategori/yorum **düzenleme** (CRUD) — bilerek yapılmadı: DB/CMS
+      olmadan "kaydet" butonu hiçbir yere yazmayacağı için yanıltıcı olurdu;
+      önce CMS entegrasyonu gerekiyor (aşağıya bakın)
 - [ ] Görsel/video yönetimi (WebP/AVIF dönüşümü dahil)
 - [ ] Sayfa yönetimi (Hakkımızda, KVKK vb. içeriklerin admin'den düzenlenmesi)
-- [ ] SEO yönetimi (sitemap/robots kontrolü, eksik meta/alt text uyarıları)
 - [ ] CMS/veritabanı entegrasyonu (Payload CMS veya Strapi + PostgreSQL) —
       şu an tüm içerik `data/*.ts` dosyalarında statik seed veri olarak
       duruyor; `lib/cms.ts` bu geçişe hazır şekilde soyutlandı ama henüz
-      gerçek bir CMS'e bağlı değil
+      gerçek bir CMS'e bağlı değil — bir sonraki admin paneli adımı bu
 
 ---
 
@@ -124,14 +143,17 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [x] Güvenlik başlıkları: HSTS, X-Frame-Options, X-Content-Type-Options,
       Referrer-Policy, Permissions-Policy, Content-Security-Policy
       (`next.config.ts` + `lib/security.ts`)
-- [x] Admin paneli için `proxy.ts` (middleware) iskeleti hazır
+- [x] Admin paneli auth: e-posta+şifre + zorunlu 2FA/TOTP, imzalı oturum
+      cookie'si, brute-force rate limiting, giriş logları (bkz. Faz 4)
 - [ ] Cloudflare WAF / DDoS koruması — hosting sağlayıcısı seçimi ve
       Cloudflare kurulumu henüz yapılmadı
-- [ ] Rate limiting
-- [ ] 2FA / rol bazlı erişim (admin panel olmadığı için henüz uygulanamıyor)
+- [ ] Prodüksiyon rate limiting — şu an bellek-içi/tek-process (MVP); çoklu
+      instance için Cloudflare Rate Limiting veya Upstash Redis gerekiyor
+- [ ] Rol bazlı erişim — henüz tek admin rolü var, CMS/DB entegrasyonu sonrası
 - [ ] Dosya yükleme / MIME type doğrulama (admin panel görsel yükleme
       özelliğiyle birlikte gelecek)
-- [ ] Admin işlem logları
+- [x] Admin giriş logları (yerel dosya, MVP) — [ ] admin işlem logları (ürün
+      düzenleme vb.) henüz yok çünkü düzenleme özelliği de yok
 - [ ] Günlük otomatik yedek + haftalık dış yedek
 - [ ] Sentry / Logtail hata takibi entegrasyonu
 - [ ] Bağımlılık güncelleme (Dependabot vb.) otomasyonu
@@ -147,7 +169,9 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 - [ ] Kapsamlı mobil test (gerçek cihazlarda)
 - [ ] Form testleri (iletişim formu şu an `mailto:` ile çalışıyor;
       gerçek bir backend/API endpoint'e bağlanmadı)
-- [ ] Admin panel testleri (admin panel henüz yok)
+- [x] Admin panel auth testleri (Playwright ile uçtan uca doğrulandı: yetkisiz
+      erişim engelleme, hatalı şifre, hatalı TOTP, kurcalanmış cookie,
+      logout) — [ ] admin CRUD testleri henüz yok çünkü CRUD özelliği yok
 - [ ] Canlı yayın (production deployment)
 
 ---
@@ -176,6 +200,6 @@ Faz sırası plandaki (bölüm 16) sırayla aynıdır.
 | Faz 1 — Temel Kurulum | ✅ Tamamlandı (deployment hariç) |
 | Faz 2 — Marka ve Ana Sayfa | ✅ Tamamlandı (gerçek görsel/video hariç) |
 | Faz 3 — Ürün Kataloğu | ⚙️ Büyük ölçüde tamamlandı (gerçek içerik hariç) |
-| Faz 4 — Admin Panel | ❌ Yapılmadı |
-| Faz 5 — SEO ve Güvenlik | ⚙️ Temel SEO + header güvenliği tamam, WAF/backup/hata takibi eksik |
+| Faz 4 — Admin Panel | ⚙️ Auth (2FA dahil) + salt okunur dashboard/ürün/kategori/yorum/SEO ekranları tamam; CRUD, CMS/DB entegrasyonu bekliyor |
+| Faz 5 — SEO ve Güvenlik | ⚙️ Temel SEO + header güvenliği + admin auth güvenliği tamam, WAF/backup/hata takibi eksik |
 | Faz 6 — Yayına Alma | ❌ Yapılmadı |

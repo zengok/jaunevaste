@@ -18,6 +18,11 @@ export async function getPublishedProducts(): Promise<Product[]> {
   return products.filter((p) => p.published);
 }
 
+/** Admin panel için: taslaklar dahil tüm ürünler. */
+export async function getAllProductsAdmin(): Promise<Product[]> {
+  return products;
+}
+
 export async function getProductBySlug(
   slug: string
 ): Promise<Product | undefined> {
